@@ -9,7 +9,6 @@ import { createTable, getMenuList, saveMenuItems, filterByQueryAndCategories } f
 import { getSectionListData, useUpdateEffect } from '../utils/utils';
 
 import Filters from '../components/Filters';
-import filter from 'lodash.filter';
 import Colors from '../constants/Colors';
 
 
@@ -41,6 +40,8 @@ const Home = ({ navigation }) => {
             const userData = await AsyncStorage.getItem('userData');
             if (userData) {
                 setUserDetails(JSON.parse(userData))
+                console.log(userData);
+
             }
         } catch (e) {
             Alert.alert(`Error: The error is here 1 ${e.message}`)
@@ -86,7 +87,7 @@ const Home = ({ navigation }) => {
                 }
                 return (
                     filterSelections[i]
-                    );
+                );
             });
             try {
                 const menuItems = await filterByQueryAndCategories(
@@ -139,6 +140,9 @@ const Home = ({ navigation }) => {
                 </Text>
                 <Text style={menuStyles.titleText}>We are a family owned Nigerian restaurant,
                     focused on traditional recipes served with a modern twist.</Text>
+                <TouchableOpacity onPress={() => { navigation.navigate("Profile"); }} style={menuStyles.btn}>
+                    <Text style={menuStyles.itemText}>{userDetails.name[0]}</Text>
+                </TouchableOpacity>
                 <Image style={menuStyles.titleImage} source={require('../assets/images/Home.jpg')} resizeMode='cover' />
                 <TouchableOpacity style={menuStyles.button}>
                     <Text style={menuStyles.titleButton}>Reserve A Table</Text>
@@ -248,7 +252,6 @@ const menuStyles = StyleSheet.create({
         width: 150,
         height: 150,
         borderRadius: 20,
-
     },
     imageContainer: {
         position: 'absolute',
@@ -258,7 +261,6 @@ const menuStyles = StyleSheet.create({
         left: 230,
         top: 60,
         marginHorizontal: 10,
-
     },
     button: {
         borderRadius: 50,
@@ -279,6 +281,20 @@ const menuStyles = StyleSheet.create({
         backgroundColor: Colors.white,
         color: Colors.green,
         bottom: 70,
+    },
+    btn: {
+        backgroundColor: Colors.yellow,
+        width: 80,
+        height: 80,
+        borderRadius: 90,
+        bottom: 390,
+        left: 310,
+
+    },
+    btnName: {
+        color: Colors.green,
+        fontWeight: 'bold',
+        fontSize: 16,
     },
 });
 

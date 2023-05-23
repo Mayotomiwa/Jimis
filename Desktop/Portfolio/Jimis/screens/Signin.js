@@ -35,6 +35,7 @@ const Signin = ({ navigation }) => {
             handleerror('Please Enter Your Password', 'password');
             valid = false;
         }
+
         if (valid) {
             handlelogin();
         }

@@ -53,6 +53,7 @@ const SignUp = ({ navigation }) => {
         name: '',
         email: '',
         password: '',
+        phonenumber: ''
     })
     const [errors, setErrors] = useState({})
     const [isloading, setLoading] = useState(false)
@@ -74,9 +75,7 @@ const SignUp = ({ navigation }) => {
         if (!inputs.name) {
             handleerror('Please Enter Your Name', 'name');
             valid = false;
-        }
-
-        
+        }     
         if (!inputs.password) {
             handleerror('Please Enter Password', 'password');
             valid = false;
@@ -152,7 +151,6 @@ const SignUp = ({ navigation }) => {
                         placeholder={"Type your email"}
                         error={errors.email}
                     />
-
                     <Input
                         value={inputs.password}
                         onChangeText={(text) => handleonChange(text, 'password')}
